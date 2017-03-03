@@ -27,6 +27,20 @@ var albumPicasso = {
          { title: 'Wrong phone number', duration: '2:15'}
      ]
  };
+var albumRock = {
+     title: 'The Ones That Rock',
+     artist: 'The Rockers',
+     label: 'EM',
+     year: '2017',
+     albumArtUrl: 'assets/images/album_covers/07.png',
+     songs: [
+         { title: 'Rock and Roll', duration: '2:02' },
+         { title: 'Dr. Rock', duration: '2:36' },
+         { title: 'Important', duration: '7:23'},
+         { title: 'Hello Its Me', duration: '4:24' },
+         { title: 'ITT Tech', duration: '6:53'}
+     ]
+ };
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -38,13 +52,14 @@ var createSongRow = function(songNumber, songName, songLength) {
  
      return template;
  };
-var setCurrentAlbum = function(album) {
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
- 
+
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
+var setCurrentAlbum = function(album) {     
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
@@ -59,4 +74,14 @@ var setCurrentAlbum = function(album) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     
+     var albums = [albumPicasso, albumMarconi, albumRock];
+     var index = 1;
+     albumImage.addEventListener("click", function(event) {
+         setCurrentAlbum(albums[index]);
+         index++;
+            if (index == albums.length) {
+                index = 0;
+            }                                
+     });
  };
