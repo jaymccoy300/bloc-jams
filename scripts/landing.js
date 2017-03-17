@@ -7,6 +7,7 @@
        
  }; 
     $.each($('.point'), revealPoint);  
+
 };
 
 
