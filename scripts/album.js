@@ -78,6 +78,7 @@ var offHover = function(event) {
      $row.hover(onHover, offHover);
      return $row;
  };
+
 var setCurrentAlbum = function(album) { 
      currentAlbum = album;
      var $albumTitle = $('.album-view-title');
@@ -168,7 +169,10 @@ var updatePlayerBarSong = function() {
  var $nextButton = $('.main-controls .next');
 
  $(document).ready(function() {
-    setCurrentAlbum(albumPicasso);   
+     var sel = $('.main-controls .play-pause');
+     setCurrentAlbum(albumPicasso);   
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
+     sel.click(togglePlayFromPlayerBar()
+               )
  });
